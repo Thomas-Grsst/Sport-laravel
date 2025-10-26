@@ -30,17 +30,32 @@
                             {{ $exercice->category }}
                         </span>
                     </div>
-                    <p class="text-gray-600 mt-3 flex-grow text-center">{{ Str::limit($exercice->description, 100) }}</p>
+                    <img src="{{ $exercice->image }}" alt="photo" class="mx-auto w-48 h-48 object-cover rounded-lg shadow-md">
+
+
+
+
                     <div class="mt-4 flex justify-center gap-2">
-                        <a href="{{ route('show', $exercice) }}"
+                        <a href="{{ route('exercices.show', $exercice) }}"
                             class="text-center border border-blue-500 text-blue-600 font-medium px-3 py-2 rounded-lg hover:bg-blue-50 transition">
                             Voir
                         </a>
-                        <a href="{{ route('edit', $exercice) }}"
+                        <a href="{{ route('exercices.edit', $exercice) }}"
                             class="text-center border border-gray-400 text-gray-700 font-medium px-3 py-2 rounded-lg hover:bg-gray-100 transition">
                             Modifier
                         </a>
+                        <form action="{{ route('exercices.destroy', $exercice) }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="text-center border border-red-500 text-red-600 font-medium px-3 py-2 rounded-lg hover:bg-red-50 transition">
+                                Supprimer
+                            </button>
+                        </form>
                     </div>
+
+
+                    
                 </div>
             </div>
         @endforeach
